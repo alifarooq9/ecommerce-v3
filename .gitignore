@@ -20,8 +20,8 @@
 **/build
 
 # misc
-**.DS_Store
-***.pem
+**/.DS_Store
+**/*.pem
 
 # debug
 **/npm-debug.log*
@@ -31,11 +31,11 @@
 **/yarn.lock
 
 # local env files
-**.env
-**.env*.local
+**/.env
+**/.env*.local
 
 # vercel
-**.vercel
+**/.vercel
 
 # typescript
-***.tsbuildinfo
+***/.tsbuildinfo
