@@ -42,7 +42,9 @@ const Header: FC = () => {
               <div className="ml-4 flex lg:ml-0">
                 <Link href={"/"}>
                   <a>
-                    <span className="text-xl font-bold">Ecommerce</span>
+                    <span className="text-xl font-bold text-gray-900">
+                      Ecommerce
+                    </span>
                   </a>
                 </Link>
               </div>

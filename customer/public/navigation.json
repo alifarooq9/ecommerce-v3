@@ -114,5 +114,5 @@
       ]
     }
   ],
-  "pages": [{ "name": "Store", "href": "#" }]
+  "pages": [{ "name": "Store", "href": "/store" }]
 }
