@@ -21,6 +21,7 @@
     "@trpc/server": "10.0.0-proxy-beta.17",
     "next": "12.3.1",
     "next-auth": "^4.12.3",
+    "nprogress": "^0.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "superjson": "1.9.1",
@@ -29,6 +30,7 @@
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@types/node": "18.0.0",
+    "@types/nprogress": "^0.2.0",
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
