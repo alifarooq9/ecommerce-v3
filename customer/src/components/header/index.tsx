@@ -1,11 +1,7 @@
 import { FC } from "react";
 
 const Header: FC = () => {
-    return (
-        <nav>
-            Header
-        </nav>
-    )
-}
+  return <header>Header</header>;
+};
 
-export default Header
+export default Header;
