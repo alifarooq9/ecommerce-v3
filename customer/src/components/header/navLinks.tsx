@@ -17,7 +17,7 @@ const NavLinks: FC = () => {
                     className={`
                     ${
                       open
-                        ? "border-blue-600 text-blue-600"
+                        ? "border-purple-600 text-purple-600"
                         : "border-transparent text-gray-700 hover:text-gray-800"
                     } ease-out" relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200`}
                   >
