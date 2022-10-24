@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-// import Footer from "../components/footer";
+import Footer from "../components/footer";
 import Header from "../components/header";
 
 const Layout: FC<{ children: ReactNode }> = ({ children }) => {
@@ -8,7 +8,7 @@ const Layout: FC<{ children: ReactNode }> = ({ children }) => {
       <div>
         <Header />
         {children}
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   );

@@ -22,14 +22,14 @@ const Landing: FC = () => {
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                 <div className="rounded-md shadow">
                   <Link href="/store">
-                    <a className="flex w-full items-center justify-center rounded-md border border-transparent bg-black px-8 py-3  text-base text-white  transition-colors duration-300 hover:bg-gray-700 md:px-10">
+                    <a className="flex w-full items-center justify-center rounded-md border border-transparent bg-black px-8 py-3 text-base  font-medium text-white  transition-colors duration-300 hover:bg-gray-700 md:px-10">
                       Buy Now
                     </a>
                   </Link>
                 </div>
                 <div className="mt-3 sm:mt-0 sm:ml-3">
                   <Link href="/auth/create-account">
-                    <a className="flex w-full items-center justify-center rounded-md border border-transparent bg-gray-200 px-8 py-3  text-base text-black transition-colors duration-300 hover:bg-gray-300 md:px-10">
+                    <a className="flex w-full items-center justify-center rounded-md border border-transparent bg-gray-200 px-8 py-3 text-base  font-medium text-black transition-colors duration-300 hover:bg-gray-300 md:px-10">
                       Create Account
                     </a>
                   </Link>
