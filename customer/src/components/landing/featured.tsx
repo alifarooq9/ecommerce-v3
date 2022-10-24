@@ -63,6 +63,8 @@ const Featured: FC = () => {
                     src={product.imageSrc}
                     alt={product.imageAlt}
                     layout="fill"
+                    placeholder="blur"
+                    blurDataURL={product.imageSrc}
                     objectFit="cover"
                   />
                 </div>

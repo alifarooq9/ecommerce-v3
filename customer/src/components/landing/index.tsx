@@ -45,6 +45,8 @@ const Landing: FC = () => {
               alt="hero image"
               layout="fill"
               objectFit="cover"
+              placeholder="blur"
+              blurDataURL="https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg"
               className="scale-100 rounded-lg"
             />
           </div>
