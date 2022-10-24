@@ -19,7 +19,7 @@ const Header: FC = () => {
       <MobileNav open={open} setOpen={setOpen} />
 
       <header className="relative border-b border-gray-200 bg-white">
-        <p className="flex h-10 items-center justify-center bg-gray-900 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
+        <p className="flex h-10 items-center justify-center bg-black px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
           Get free delivery on orders over $100
         </p>
 
