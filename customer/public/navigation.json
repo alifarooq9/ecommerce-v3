@@ -105,10 +105,10 @@
           "id": "brands",
           "name": "Brands",
           "items": [
-            { "name": "Re-Arranged", "href": "#" },
-            { "name": "Counterfeit", "href": "#" },
-            { "name": "Full Nelson", "href": "#" },
-            { "name": "My Way", "href": "#" }
+            { "name": "Re-Arranged", "href": "/" },
+            { "name": "Counterfeit", "href": "/" },
+            { "name": "Full Nelson", "href": "/" },
+            { "name": "My Way", "href": "/" }
           ]
         }
       ]

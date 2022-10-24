@@ -14,7 +14,7 @@ const Header: FC = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed top-0 left-0 w-screen bg-white">
+    <div className="fixed top-0 left-0 z-30 w-screen bg-white">
       {/* Mobile menu */}
       <MobileNav open={open} setOpen={setOpen} />
 

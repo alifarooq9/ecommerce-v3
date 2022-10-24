@@ -60,7 +60,7 @@ const MobileNav: FC<mobileNavProptypes> = ({ open, setOpen }) => {
                             `
                               ${
                                 selected
-                                  ? "border-indigo-600 text-indigo-600"
+                                  ? "border-blue-600 text-blue-600"
                                   : "border-transparent text-gray-900"
                               }
                                 flex-1 whitespace-nowrap border-b-2 py-4 px-1 text-base font-medium
