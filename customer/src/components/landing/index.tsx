@@ -7,7 +7,7 @@ const Landing: FC = () => {
     <div className="relative flex min-h-screen items-center justify-center py-28">
       <div className="mx-auto grid h-full max-w-7xl grid-cols-1  px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
         <div className="z-10 col-span-1 pb-8 sm:pb-16 md:pb-20 lg:w-full lg:pb-28 xl:pb-32">
-          <main className="mx-auto mt-10 max-w-7xl sm:mt-12 md:mt-16 lg:mt-20  xl:mt-28">
+          <div className="mx-auto mt-10 max-w-7xl sm:mt-12 md:mt-16 lg:mt-20  xl:mt-28">
             <div className="sm:text-center lg:text-left">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl">
                 <span className="block">
@@ -36,16 +36,18 @@ const Landing: FC = () => {
                 </div>
               </div>
             </div>
-          </main>
+          </div>
         </div>
-        <div className="relative z-10 col-span-1 aspect-1 h-full w-full">
-          <Image
-            src="https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg"
-            alt="hero image"
-            layout="fill"
-            objectFit="cover"
-            className="scale-100 rounded-lg lg:scale-75"
-          />
+        <div className="col-span-1 flex items-center justify-center lg:py-14 lg:pl-12 xl:pl-32">
+          <div className="relative z-10 flex aspect-1 h-full w-full justify-end sm:max-w-lg lg:max-w-none">
+            <Image
+              src="https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg"
+              alt="hero image"
+              layout="fill"
+              objectFit="cover"
+              className="scale-100 rounded-lg"
+            />
+          </div>
         </div>
       </div>
     </div>

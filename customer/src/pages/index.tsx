@@ -1,8 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Landing from "../components/landing";
+import Featured from "../components/landing/featured";
 
-const Home: NextPage = (props) => {
+const Home: NextPage = () => {
   return (
     <>
       <Head>
@@ -12,6 +13,7 @@ const Home: NextPage = (props) => {
       </Head>
       <main>
         <Landing />
+        <Featured />
       </main>
     </>
   );
