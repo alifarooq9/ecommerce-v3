@@ -9,6 +9,7 @@ interface createAccountDataTypes {
   email: string;
   password: string;
   confirmPassword: string;
+  autoSignin: boolean;
 }
 
 interface signinAccountDataTypes {
@@ -25,6 +26,7 @@ const useAuth = () => {
     email,
     password,
     confirmPassword,
+    autoSignin,
   }: createAccountDataTypes) => {
     // create account loading toast
     const createAccountToast = toast.loading("Creating Account...");
@@ -41,7 +43,9 @@ const useAuth = () => {
       toast.success("Account has been created.", { id: createAccountToast });
 
       // signin account
-      await handleSigninAccount({ email, password });
+      if (autoSignin === true) {
+        await handleSigninAccount({ email, password });
+      }
 
       setIsCreatingAccount(false);
     } catch (error: any) {

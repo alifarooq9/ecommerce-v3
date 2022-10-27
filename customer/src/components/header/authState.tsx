@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FC } from "react";
 
 const AuthState: FC = () => {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   return (
     <>

@@ -9,6 +9,7 @@ interface useDataTypes {
   name: string;
   password: string;
   confirmPassword: string;
+  autoSignin: boolean;
 }
 
 const CreateAccount: NextPage = () => {
@@ -18,6 +19,7 @@ const CreateAccount: NextPage = () => {
     name: "",
     password: "",
     confirmPassword: "",
+    autoSignin: true,
   });
 
   //use auth custom hook
@@ -42,7 +44,7 @@ const CreateAccount: NextPage = () => {
               </p>
             </div>
             <form
-              className="mt-8 space-y-6"
+              className="mt-8 space-y-4"
               onSubmit={(e) => {
                 e.preventDefault();
                 handleCreateAccount({
@@ -50,6 +52,7 @@ const CreateAccount: NextPage = () => {
                   name: userData.name,
                   password: userData.password,
                   confirmPassword: userData.confirmPassword,
+                  autoSignin: userData.autoSignin,
                 });
               }}
             >
@@ -129,6 +132,27 @@ const CreateAccount: NextPage = () => {
                     className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-3 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                     placeholder="Confirm Password"
                   />
+                </div>
+              </div>
+
+              <div className="flex items-center justify-start">
+                <div className="flex items-center">
+                  <input
+                    checked={userData.autoSignin}
+                    onChange={(e) =>
+                      setUserData({ ...userData, autoSignin: e.target.checked })
+                    }
+                    id="remember-me"
+                    name="remember-me"
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                  />
+                  <label
+                    htmlFor="remember-me"
+                    className="ml-2 block text-sm text-gray-900"
+                  >
+                    Auto signin to account
+                  </label>
                 </div>
               </div>
 

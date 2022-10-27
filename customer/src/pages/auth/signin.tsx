@@ -9,7 +9,7 @@ interface userDataTypes {
   password: string;
 }
 
-const Signin: NextPage = (props) => {
+const Signin: NextPage = () => {
   //user input data
   const [userData, setUserData] = useState<userDataTypes>({
     email: "",
@@ -38,7 +38,7 @@ const Signin: NextPage = (props) => {
               </p>
             </div>
             <form
-              className="mt-8 space-y-6"
+              className="mt-8 space-y-3"
               onSubmit={(e) => {
                 e.preventDefault();
                 handleSigninAccount({
@@ -48,7 +48,7 @@ const Signin: NextPage = (props) => {
               }}
             >
               <input type="hidden" name="remember" defaultValue="true" />
-              <div className="space-y-3 rounded-md shadow-sm">
+              <div className="space-y-3 rounded-md">
                 <div>
                   <label htmlFor="email-address" className="sr-only">
                     Email address
@@ -84,6 +84,16 @@ const Signin: NextPage = (props) => {
                     className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-3 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                     placeholder="Password"
                   />
+                </div>
+              </div>
+
+              <div className="flex items-center justify-end">
+                <div className="text-sm">
+                  <Link href={"/auth/forgot-password"}>
+                    <a className="font-medium text-blue-600 hover:text-blue-500">
+                      Forgot your password?
+                    </a>
+                  </Link>
                 </div>
               </div>
 
