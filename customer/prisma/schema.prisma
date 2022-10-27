@@ -12,12 +12,6 @@ datasource db {
   referentialIntegrity = "prisma"
 }
 
-model Example {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
 // Necessary for Next auth
 model Account {
   id                String  @id @default(cuid())
@@ -25,12 +19,12 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? // @db.Text
-  access_token      String? // @db.Text
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? // @db.Text
+  id_token          String? @db.Text
   session_state     String?
   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -59,9 +53,9 @@ model User {
   emailVerified DateTime?
   password      String?
   image         String?
-  role          roleEnum  @default(CUSTOMER)
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  role          roleEnum? @default(CUSTOMER)
+  createdAt     DateTime? @default(now())
+  updatedAt     DateTime? @updatedAt
   accounts      Account[]
   sessions      Session[]
 }

@@ -2,6 +2,7 @@ import { LockClosedIcon } from "@heroicons/react/24/outline";
 import { NextPage } from "next";
 import Link from "next/link";
 import { useState } from "react";
+import SocialSignin from "../../components/auth/socialSignin";
 import useAuth from "../../hooks/useAuth";
 
 interface useDataTypes {
@@ -12,7 +13,7 @@ interface useDataTypes {
   autoSignin: boolean;
 }
 
-const CreateAccount: NextPage = () => {
+const CreateAccount: NextPage = (props) => {
   //use dinput data
   const [userData, setUserData] = useState<useDataTypes>({
     email: "",
@@ -169,6 +170,8 @@ const CreateAccount: NextPage = () => {
                 </span>
                 {isCreatingAccount ? "Creating" : "Create Account"}
               </button>
+
+              <SocialSignin />
             </form>
           </div>
         </main>

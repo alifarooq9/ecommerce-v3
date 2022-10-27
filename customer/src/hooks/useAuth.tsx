@@ -93,11 +93,23 @@ const useAuth = () => {
     }
   };
 
+  // google login
+  const handleGoogleSignin = async () => {
+    const loadingToast = toast.loading("Signin in to google");
+
+    try {
+      await signIn("google", { redirect: false });
+    } catch (error) {
+      toast.error("Google login failed", { id: loadingToast });
+    }
+  };
+
   return {
     isCreatingAccount,
     handleCreateAccount,
     handleSigninAccount,
     isSignningAccount,
+    handleGoogleSignin,
   };
 };
 

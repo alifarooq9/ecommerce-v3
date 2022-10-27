@@ -1,4 +1,4 @@
-import  bcrypt  from 'bcryptjs';
+import bcrypt from "bcryptjs";
 import NextAuth, { type NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -14,12 +14,14 @@ export const authOptions: NextAuthOptions = {
   session: {
     // Set to jwt in order to CredentialsProvider works properly
     strategy: "jwt",
-  },
-  pages: {
-    signIn: "/auth/signin",
-    error: "/auth/signin",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
 
+  pages: {
+    signIn: "/auth/signin",
+    // error: "/auth/signin",
+  },
+  debug: true,
   callbacks: {
     jwt: async ({ token, user }) => {
       user && (token.user = user);
