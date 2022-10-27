@@ -11,7 +11,7 @@ import AuthState from "./authState";
 const MobileNav = dynamic(() => import("./mobileNav"));
 
 const Header: FC = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
     <div className="fixed top-0 left-0 z-30 w-screen bg-white">
@@ -44,7 +44,7 @@ const Header: FC = () => {
                 <Link href={"/"}>
                   <a>
                     <span className="text-xl font-bold text-gray-900">
-                      Ecommerce
+                      Ecom
                     </span>
                   </a>
                 </Link>
@@ -58,7 +58,7 @@ const Header: FC = () => {
                 <AuthState />
 
                 {/* Search */}
-                <div className="flex lg:ml-6">
+                <div className="flex lg:ml-4">
                   <button className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
                     <MagnifyingGlassIcon
@@ -69,7 +69,7 @@ const Header: FC = () => {
                 </div>
 
                 {/* Cart */}
-                <div className="ml-4 flow-root lg:ml-6">
+                <div className="ml-2 flow-root lg:ml-6">
                   <button className="group -m-2 flex items-center p-2">
                     <ShoppingBagIcon
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"

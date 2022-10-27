@@ -114,5 +114,9 @@
       ]
     }
   ],
-  "pages": [{ "name": "Store", "href": "/store" }]
+  "pages": [{ "name": "Store", "href": "/store" }],
+  "authNav": [
+    { "id": "settings", "name": "Settings", "href": "/account/settings" },
+    { "id": "orders", "name": "Orders", "href": "/account/orders" }
+  ]
 }

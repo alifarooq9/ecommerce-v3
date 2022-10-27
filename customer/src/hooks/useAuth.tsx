@@ -1,4 +1,4 @@
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 import Router from "next/router";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -98,9 +98,21 @@ const useAuth = () => {
     const loadingToast = toast.loading("Signin in to google");
 
     try {
-      await signIn("google", { redirect: false });
+      await signIn("google", { redirect: true, callbackUrl: "/" });
     } catch (error) {
       toast.error("Google login failed", { id: loadingToast });
+    }
+  };
+
+  // google handle signout
+  const handleSignout = async () => {
+    const signoutToast = toast.loading("Signning out...");
+
+    try {
+      await signOut({ redirect: false });
+      toast.success("Signned out successfully", { id: signoutToast });
+    } catch (error) {
+      toast.error("Sign out failed", { id: signoutToast });
     }
   };
 
@@ -109,6 +121,7 @@ const useAuth = () => {
     handleCreateAccount,
     handleSigninAccount,
     isSignningAccount,
+    handleSignout,
     handleGoogleSignin,
   };
 };

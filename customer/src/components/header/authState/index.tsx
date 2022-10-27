@@ -1,6 +1,7 @@
-import { useSession, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { FC } from "react";
+import UserMenu from "./userMenu";
 
 const AuthState: FC = () => {
   const { data: session } = useSession();
@@ -8,7 +9,7 @@ const AuthState: FC = () => {
   return (
     <>
       {session ? (
-        <button onClick={() => signOut({ redirect: false })}>Sign out</button>
+        <UserMenu />
       ) : (
         <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
           <Link href="/auth/signin">
