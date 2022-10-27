@@ -1,5 +1,5 @@
 import { LockClosedIcon } from "@heroicons/react/24/outline";
-import { NextPage, GetServerSideProps, GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { NextPage, GetServerSideProps, GetServerSidePropsContext } from "next";
 import Link from "next/link";
 import { useState } from "react";
 import SocialSignin from "../../components/auth/socialSignin";
