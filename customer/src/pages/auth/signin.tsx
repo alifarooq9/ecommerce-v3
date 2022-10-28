@@ -1,10 +1,5 @@
 import { LockClosedIcon } from "@heroicons/react/24/outline";
-import {
-  GetServerSideProps,
-  NextPage,
-  
-  GetServerSidePropsContext,
-} from "next";
+import { GetServerSideProps, NextPage, GetServerSidePropsContext } from "next";
 import Link from "next/link";
 import { useState } from "react";
 import SocialSignin from "../../components/auth/socialSignin";
@@ -16,7 +11,7 @@ interface userDataTypes {
   password: string;
 }
 
-const Signin: NextPage = () => {
+const Signin: NextPage = (props) => {
   //user input data
   const [userData, setUserData] = useState<userDataTypes>({
     email: "",
@@ -125,28 +120,6 @@ const Signin: NextPage = () => {
       </div>
     </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
-  const session = await getServerAuthSession({
-    req: context.req,
-    res: context.res,
-  });
-
-  if (session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
 };
 
 export default Signin;

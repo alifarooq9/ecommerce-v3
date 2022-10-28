@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 
-const Settings: NextPage = (props) => {
+const Settings: NextPage = () => {
   return <div>Settings</div>;
 };
 

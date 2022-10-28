@@ -14,7 +14,7 @@ interface useDataTypes {
   autoSignin: boolean;
 }
 
-const CreateAccount: NextPage = () => {
+const CreateAccount: NextPage = (props) => {
   //use dinput data
   const [userData, setUserData] = useState<useDataTypes>({
     email: "",
@@ -179,28 +179,6 @@ const CreateAccount: NextPage = () => {
       </div>
     </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
-  const session = await getServerAuthSession({
-    req: context.req,
-    res: context.res,
-  });
-
-  if (session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
 };
 
 export default CreateAccount;
