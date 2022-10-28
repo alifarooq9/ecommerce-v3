@@ -1,7 +1,8 @@
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { FC } from "react";
-import UserMenu from "./userMenu";
+import dynamic from "next/dynamic";
+const UserMenu = dynamic(() => import("./userMenu"));
 
 const AuthState: FC = () => {
   const { data: session } = useSession();

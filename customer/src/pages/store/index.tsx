@@ -3,7 +3,7 @@ import { NextPage } from "next";
 const Store: NextPage = () => {
   return (
     <>
-      <main>Hello Store</main>
+      <main className="mt-28">Hello Store</main>
     </>
   );
 };

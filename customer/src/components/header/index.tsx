@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import {
   Bars3Icon,
   MagnifyingGlassIcon,
@@ -8,15 +8,21 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import NavLinks from "./navLinks";
 import AuthState from "./authState";
+const MiniCart = dynamic(() => import("./miniCart"));
 const MobileNav = dynamic(() => import("./mobileNav"));
 
 const Header: FC = () => {
-  const [open, setOpen] = useState<boolean>(false);
+  //menu states
+  const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false);
+  const [openMiniCart, setOpenMiniCart] = useState<boolean>(false);
 
   return (
     <div className="fixed top-0 left-0 z-30 w-screen bg-white">
       {/* Mobile menu */}
-      <MobileNav open={open} setOpen={setOpen} />
+      <MobileNav open={openMobileMenu} setOpen={setOpenMobileMenu} />
+
+      {/* mini cart */}
+      <MiniCart open={openMiniCart} setOpen={setOpenMiniCart} />
 
       <header className="relative border-b border-gray-200 bg-white">
         <p className="flex h-10 items-center justify-center bg-black px-4 text-sm font-medium text-white sm:px-6 lg:px-8">
@@ -33,7 +39,7 @@ const Header: FC = () => {
               <button
                 type="button"
                 className="rounded-md bg-white p-2 text-gray-400 lg:hidden"
-                onClick={() => setOpen(true)}
+                onClick={() => setOpenMobileMenu(true)}
               >
                 <span className="sr-only">Open menu</span>
                 <Bars3Icon className="h-6 w-6" aria-hidden="true" />
@@ -70,7 +76,10 @@ const Header: FC = () => {
 
                 {/* Cart */}
                 <div className="ml-2 flow-root lg:ml-6">
-                  <button className="group -m-2 flex items-center p-2">
+                  <button
+                    onClick={() => setOpenMiniCart(true)}
+                    className="group -m-2 flex items-center p-2"
+                  >
                     <ShoppingBagIcon
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"

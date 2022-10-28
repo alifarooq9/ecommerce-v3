@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "Throwback Hip Bag",
+    "shortDescription": "this is a short description",
+    "description": "this is a description",
+    "color": [
+      {
+        "name": "black",
+        "code": "#000"
+      },
+      {
+        "name": "white",
+        "code": "#fff"
+      }
+    ],
+    "variants": [
+      {
+        "id": "xs",
+        "price": 39.99,
+        "size": "xs"
+      },
+      {
+        "id": "sm",
+        "price": 44.99,
+        "size": "sm"
+      },
+      {
+        "id": "md",
+        "price": 49.99,
+        "size": "md"
+      },
+      {
+        "id": "lg",
+        "price": 55.99,
+        "size": "lg"
+      }
+    ],
+    "defaultVariant": "sm",
+    "quantity": 1,
+    "images": [
+      {
+        "imageSrc": "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
+        "imageAlt": "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
+      },
+      {
+        "imageSrc": "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
+        "imageAlt": "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
+      },
+      {
+        "imageSrc": "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
+        "imageAlt": "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
+      }
+    ]
+  }
+]
