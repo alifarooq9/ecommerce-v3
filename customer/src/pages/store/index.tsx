@@ -21,11 +21,6 @@ const MobileFilter = dynamic(
   () => import("../../components/store/mobileFilter")
 );
 
-interface queryTypes {
-  id: string;
-  queries: string[];
-}
-
 const Store: NextPage = (
   props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
@@ -73,81 +68,55 @@ const Store: NextPage = (
     },
   ]);
 
-  const [useQuery, setUseQuery] = useState<queryTypes[]>([
-    {
-      id: "size",
-      queries: [],
-    },
-    {
-      id: "color",
-      queries: [],
-    },
-    {
-      id: "category",
-      queries: [],
-    },
-  ]);
-
   //query
   const onChangeFilter = (
     e: ChangeEvent<HTMLInputElement>,
-    sectionId: string,
-    valueIndex: number
+    sectionId: string
   ) => {
-    if (e.target.checked) {
-      setUseQuery(
-        [...useQuery].map((q) => {
-          if (q.id === sectionId) {
-            return {
-              ...q,
-              queries: [...q.queries, e.target.value],
-            };
+    let temp = [...filters];
+
+    temp.map((f) => {
+      if (f.id === sectionId) {
+        f.options.map((o) => {
+          if (o.value === e.target.value) {
+            o.checked = o.checked ? false : true;
           }
-
-          return q;
-        })
-      );
-
-      return;
-    }
-
-    const temp = [...useQuery];
-    temp.map((tq) => {
-      if (tq.id === sectionId) {
-        tq.queries.splice(valueIndex, 1);
+        });
       }
     });
-    setUseQuery(temp);
+
+    setFilter(temp);
   };
 
   const handleApplyFilters = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let colorQuery: any = [];
-    let categoryQuery: any = [];
-    let sizeQuery: any = [];
-    useQuery.map((q) => {
-      if (q.id === "color") {
-        return colorQuery.push(q.queries);
-      }
-
-      if (q.id === "category") {
-        return categoryQuery.push(q.queries);
-      }
-
-      if (q.id === "size") {
-        return sizeQuery.push(q.queries);
-      }
+    let colorQuery: string[] = [];
+    let sizeQuery: string[] = [];
+    let categoryQuery: string[] = [];
+    filters.map((f) => {
+      f.options.map((o) => {
+        if (f.id === "color" && o.checked) {
+          colorQuery.push(o.value);
+        }
+        if (f.id === "category" && o.checked) {
+          categoryQuery.push(o.value);
+        }
+        if (f.id === "size" && o.checked) {
+          sizeQuery.push(o.value);
+        }
+      });
     });
 
-    await Router.push({
+    Router.push({
       pathname: "/store",
       query: {
-        ...Router.query,
-        color: JSON.stringify(colorQuery),
-        size: JSON.stringify(sizeQuery),
-        category: JSON.stringify(categoryQuery),
+        color: colorQuery,
+        size: sizeQuery,
+        category: categoryQuery,
       },
     });
+
+    return;
   };
 
   return (
@@ -196,7 +165,7 @@ const Store: NextPage = (
                               <Link
                                 href={{
                                   pathname: "/store",
-                                  query: { sort: option.href, ...Router.query },
+                                  query: { ...Router.query, sort: option.href },
                                 }}
                               >
                                 <a
@@ -285,10 +254,10 @@ const Store: NextPage = (
                                   name={`${section.id}[]`}
                                   defaultValue={option.value}
                                   onChange={(e) => {
-                                    onChangeFilter(e, section.id, optionIdx);
+                                    onChangeFilter(e, section.id);
                                   }}
                                   type="checkbox"
-                                  defaultChecked={option.checked}
+                                  checked={option.checked}
                                   className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                                 />
                                 <label
