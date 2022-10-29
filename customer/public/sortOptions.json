@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Most Popular",
+    "href": "MOSTPOPULAR"
+  },
+  {
+    "name": "Best Rating",
+    "href": "BESTRATING"
+  },
+  { "name": "Newest", "href": "NEWEST" },
+  {
+    "name": "Price: Low to High",
+    "href": "LOWTOHIGH"
+  },
+  {
+    "name": "Price: High to Low",
+    "href": "HIGHTOLOW"
+  }
+]

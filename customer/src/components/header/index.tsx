@@ -38,7 +38,7 @@ const Header: FC = () => {
               {/* Mobile menu icon */}
               <button
                 type="button"
-                className="rounded-md bg-white p-2 text-gray-400 lg:hidden"
+                className="rounded-md bg-white text-gray-400 lg:hidden"
                 onClick={() => setOpenMobileMenu(true)}
               >
                 <span className="sr-only">Open menu</span>
