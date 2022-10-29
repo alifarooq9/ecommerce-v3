@@ -1,20 +1,20 @@
 import { Dispatch, FC, Fragment, SetStateAction } from "react";
 import { Dialog, Disclosure, Transition } from "@headlessui/react";
 import { MinusIcon, PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import useFilter from "../../hooks/usefilter";
 
 interface mobileFilterTypes {
   mobileFiltersOpen: boolean;
   setMobileFiltersOpen: Dispatch<SetStateAction<boolean>>;
-
-  filters: any;
 }
 
 const MobileFilter: FC<mobileFilterTypes> = ({
   mobileFiltersOpen,
   setMobileFiltersOpen,
-
-  filters,
 }) => {
+  //use filters
+  const { filters, onChangeFilter, handleApplyFilters } = useFilter();
+
   return (
     <>
       {/* Mobile filter dialog */}
@@ -60,8 +60,11 @@ const MobileFilter: FC<mobileFilterTypes> = ({
                 </div>
 
                 {/* Filters */}
-                <form className="mt-4 border-t border-gray-200">
-                  {filters.map((section: any) => (
+                <form
+                  className="mt-4 border-t border-gray-200"
+                  onSubmit={handleApplyFilters}
+                >
+                  {filters.map((section) => (
                     <Disclosure
                       as="div"
                       key={section.id}
@@ -91,35 +94,42 @@ const MobileFilter: FC<mobileFilterTypes> = ({
                           </h3>
                           <Disclosure.Panel className="pt-6">
                             <div className="space-y-6">
-                              {section.options.map(
-                                (option: any, optionIdx: any) => (
-                                  <div
-                                    key={option.value}
-                                    className="flex items-center"
+                              {section.options.map((option, optionIdx) => (
+                                <div
+                                  key={option.value}
+                                  className="flex items-center"
+                                >
+                                  <input
+                                    id={`filter-mobile-${section.id}-${optionIdx}`}
+                                    name={`${section.id}[]`}
+                                    defaultValue={option.value}
+                                    type="checkbox"
+                                    onChange={(e) => {
+                                      onChangeFilter(e, section.id);
+                                    }}
+                                    checked={option.checked}
+                                    defaultChecked={option.checked}
+                                    className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                                  />
+                                  <label
+                                    htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
+                                    className="ml-3 min-w-0 flex-1 text-gray-500"
                                   >
-                                    <input
-                                      id={`filter-mobile-${section.id}-${optionIdx}`}
-                                      name={`${section.id}[]`}
-                                      defaultValue={option.value}
-                                      type="checkbox"
-                                      defaultChecked={option.checked}
-                                      className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                                    />
-                                    <label
-                                      htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
-                                      className="ml-3 min-w-0 flex-1 text-gray-500"
-                                    >
-                                      {option.label}
-                                    </label>
-                                  </div>
-                                )
-                              )}
+                                    {option.label}
+                                  </label>
+                                </div>
+                              ))}
                             </div>
                           </Disclosure.Panel>
                         </>
                       )}
                     </Disclosure>
                   ))}
+                  <div className="mt-6 px-5">
+                    <button className=" w-full rounded-md bg-gray-900 py-3 text-sm text-white transition-colors duration-300 hover:bg-gray-700">
+                      Apply
+                    </button>
+                  </div>
                 </form>
               </Dialog.Panel>
             </Transition.Child>

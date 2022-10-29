@@ -1,5 +1,5 @@
 /* eslint-disable prefer-const */
-import { ChangeEvent, FormEvent, Fragment, useState } from "react";
+import { Fragment, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
   ChevronDownIcon,
@@ -16,7 +16,8 @@ import {
 } from "next";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import Router, { useRouter } from "next/router";
+import Router from "next/router";
+import useFilter from "../../hooks/usefilter";
 const MobileFilter = dynamic(
   () => import("../../components/store/mobileFilter")
 );
@@ -24,182 +25,17 @@ const MobileFilter = dynamic(
 const Store: NextPage = (
   props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
-  //router
-  const router = useRouter();
+  // use filter
+  const { onChangeFilter, filters, handleApplyFilters } = useFilter();
 
   //mobile filter state
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState<boolean>(false);
-
-  //filter
-  const [filters, setFilter] = useState([
-    {
-      id: "color",
-      name: "Color",
-      options: [
-        {
-          value: "white",
-          label: "White",
-          checked: router.query.color?.includes("white") ? true : false,
-        },
-        {
-          value: "beige",
-          label: "Beige",
-          checked: router.query.color?.includes("beige") ? true : false,
-        },
-        {
-          value: "blue",
-          label: "Blue",
-          checked: router.query.color?.includes("blue") ? true : false,
-        },
-        {
-          value: "brown",
-          label: "Brown",
-          checked: router.query.color?.includes("brown") ? true : false,
-        },
-        {
-          value: "green",
-          label: "Green",
-          checked: router.query.color?.includes("green") ? true : false,
-        },
-        {
-          value: "purple",
-          label: "Purple",
-          checked: router.query.color?.includes("purple") ? true : false,
-        },
-      ],
-    },
-    {
-      id: "category",
-      name: "Category",
-      options: [
-        {
-          value: "new-arrivals",
-          label: "New Arrivals",
-          checked: router.query.category?.includes("new-arrivals")
-            ? true
-            : false,
-        },
-        {
-          value: "sale",
-          label: "Sale",
-          checked: router.query.category?.includes("sale") ? true : false,
-        },
-        {
-          value: "travel",
-          label: "Travel",
-          checked: router.query.category?.includes("travel") ? true : false,
-        },
-        {
-          value: "organization",
-          label: "Organization",
-          checked: router.query.category?.includes("organization")
-            ? true
-            : false,
-        },
-        {
-          value: "accessories",
-          label: "Accessories",
-          checked: router.query.category?.includes("accessories")
-            ? true
-            : false,
-        },
-      ],
-    },
-    {
-      id: "size",
-      name: "Size",
-      options: [
-        {
-          value: "2l",
-          label: "2L",
-          checked: router.query.size?.includes("2l") ? true : false,
-        },
-        {
-          value: "6l",
-          label: "6L",
-          checked: router.query.size?.includes("6l") ? true : false,
-        },
-        {
-          value: "12l",
-          label: "12L",
-          checked: router.query.size?.includes("12l") ? true : false,
-        },
-        {
-          value: "18l",
-          label: "18L",
-          checked: router.query.size?.includes("18l") ? true : false,
-        },
-        {
-          value: "20l",
-          label: "20L",
-          checked: router.query.size?.includes("20l") ? true : false,
-        },
-        {
-          value: "40l",
-          label: "40L",
-          checked: router.query.size?.includes("40l") ? true : false,
-        },
-      ],
-    },
-  ]);
-
-  //query
-  const onChangeFilter = (
-    e: ChangeEvent<HTMLInputElement>,
-    sectionId: string
-  ) => {
-    let temp = [...filters];
-
-    temp.map((f) => {
-      if (f.id === sectionId) {
-        f.options.map((o) => {
-          if (o.value === e.target.value) {
-            o.checked = o.checked ? false : true;
-          }
-        });
-      }
-    });
-
-    setFilter(temp);
-  };
-
-  const handleApplyFilters = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    let colorQuery: string[] = [];
-    let sizeQuery: string[] = [];
-    let categoryQuery: string[] = [];
-    filters.map((f) => {
-      f.options.map((o) => {
-        if (f.id === "color" && o.checked) {
-          colorQuery.push(o.value);
-        }
-        if (f.id === "category" && o.checked) {
-          categoryQuery.push(o.value);
-        }
-        if (f.id === "size" && o.checked) {
-          sizeQuery.push(o.value);
-        }
-      });
-    });
-
-    Router.push({
-      pathname: "/store",
-      query: {
-        color: colorQuery,
-        size: sizeQuery,
-        category: categoryQuery,
-      },
-    });
-
-    return;
-  };
 
   return (
     <div className="min-h-screen bg-white pt-14">
       <MobileFilter
         mobileFiltersOpen={mobileFiltersOpen}
         setMobileFiltersOpen={setMobileFiltersOpen}
-        filters={filters as any}
       />
 
       <div>
