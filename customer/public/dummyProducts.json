@@ -1,8 +1,8 @@
 [
   {
-    "id": 1,
+    "id": "1",
     "title": "Throwback Hip Bag",
-    "shortDescription": "this is a short description",
+
     "description": "this is a description",
     "colors": [
       {
@@ -71,9 +71,8 @@
     ]
   },
   {
-    "id": 2,
+    "id": "2",
     "title": "Throwback Hip Bag",
-    "shortDescription": "this is a short description",
     "description": "this is a description",
     "colors": [
       {
@@ -134,9 +133,8 @@
     ]
   },
   {
-    "id": 3,
+    "id": "3",
     "title": "Throwback Hip Bag",
-    "shortDescription": "this is a short description",
     "description": "this is a description",
     "colors": [
       {
@@ -191,9 +189,8 @@
     ]
   },
   {
-    "id": 4,
+    "id": "4",
     "title": "Throwback Hip Bag",
-    "shortDescription": "this is a short description",
     "description": "this is a description",
     "colors": [
       {

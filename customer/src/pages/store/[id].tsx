@@ -4,15 +4,16 @@ import {
   InferGetServerSidePropsType,
   NextPage,
 } from "next";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { RadioGroup } from "@headlessui/react";
 import products from "../../../public/dummyProducts.json";
 import Image from "next/image";
+import cartContext from "../../context/cartContext";
 
 const ProductsDetail: NextPage = (
   props: InferGetServerSidePropsType<GetServerSideProps>
 ) => {
-  const product = products.find((p) => p.id === parseInt(props.idParams));
+  const product = products.find((p) => p.id === props.idParams);
 
   const [selectedColor, setSelectedColor] = useState(product?.colors[0]);
   const [selectedSize, setSelectedSize] = useState(product?.variants[2]);

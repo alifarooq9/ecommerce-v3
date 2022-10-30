@@ -1,4 +1,5 @@
 enum Sizes {
+  "xxs",
   "xs",
   "sm",
   "md",
@@ -6,6 +7,8 @@ enum Sizes {
   "xl",
   "2xl",
   "3xl",
+  "4xl",
+  "5xl",
 }
 
 interface Variants {
@@ -15,8 +18,8 @@ interface Variants {
 }
 
 export interface ProductType {
+  id: string;
   title: string;
-  shortDescription: string;
   description: string;
   colors: {
     name: string;
@@ -24,7 +27,10 @@ export interface ProductType {
   }[];
   variants: Variants[];
   defaultVariant: string;
-  quantity: number;
+  quantity: {
+    size: Sizes;
+    qty: number;
+  }[];
   images: {
     imageSrc: string;
     imageAlt: string;
