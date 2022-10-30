@@ -18,6 +18,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import Router from "next/router";
 import useFilter from "../../hooks/usefilter";
+import Products from "../../components/store/products";
 const MobileFilter = dynamic(
   () => import("../../components/store/mobileFilter")
 );
@@ -194,7 +195,7 @@ const Store: NextPage = (
               {/* Product grid */}
               <div className="lg:col-span-3">
                 {/* Replace with your content */}
-                <div className="h-96 rounded-lg border-4 border-dashed border-gray-200 lg:h-full" />
+                <Products />
                 {/* /End replace */}
               </div>
             </div>
