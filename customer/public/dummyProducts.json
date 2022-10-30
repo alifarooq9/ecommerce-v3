@@ -12,6 +12,10 @@
       {
         "name": "white",
         "code": "#fff"
+      },
+      {
+        "name": "blue",
+        "code": "#3b82f6"
       }
     ],
     "variants": [
@@ -37,22 +41,32 @@
         "id": "lg",
         "price": 55.99,
         "size": "lg",
+        "qty": 0
+      },
+      {
+        "id": "xl",
+        "price": 55.99,
+        "size": "xl",
         "qty": 2
       }
     ],
     "defaultVariant": "sm",
     "images": [
       {
-        "imageSrc": "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
-        "imageAlt": "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
+        "imageSrc": "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+        "imageAlt": "Front of men's Basic Tee in black."
       },
       {
-        "imageSrc": "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
-        "imageAlt": "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
+        "imageSrc": "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+        "imageAlt": "Front of men's Basic Tee in black."
       },
       {
-        "imageSrc": "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
-        "imageAlt": "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
+        "imageSrc": "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+        "imageAlt": "Front of men's Basic Tee in black."
+      },
+      {
+        "imageSrc": "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",
+        "imageAlt": "Front of men's Basic Tee in black."
       }
     ]
   },
@@ -92,6 +106,12 @@
       },
       {
         "id": "lg",
+        "price": 55.99,
+        "size": "lg",
+        "qty": 2
+      },
+      {
+        "id": "xl",
         "price": 55.99,
         "size": "lg",
         "qty": 2
@@ -202,7 +222,7 @@
         "id": "md",
         "price": 49.99,
         "size": "md",
-        "qty": 1
+        "qty": 0
       },
       {
         "id": "lg",
