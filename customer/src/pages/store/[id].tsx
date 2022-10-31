@@ -4,13 +4,10 @@ import {
   InferGetServerSidePropsType,
   NextPage,
 } from "next";
-import { FormEvent, useContext, useState } from "react";
+import { useState } from "react";
 import { RadioGroup } from "@headlessui/react";
 import products from "../../../public/dummyProducts.json";
 import Image from "next/image";
-import { useDispatch, useSelector } from "react-redux";
-import { Action, ItemState } from "../../redux/cartReducer";
-import { Dispatch } from "redux";
 
 const ProductsDetail: NextPage = (
   props: InferGetServerSidePropsType<GetServerSideProps>
@@ -22,17 +19,8 @@ const ProductsDetail: NextPage = (
     product?.variants.find((p) => p.id === product.defaultVariant)
   );
 
-  const count = useSelector<ItemState>((state) => state.id);
-  const addCount = useDispatch<Dispatch<Action>>();
-  const addCountFunc = () => {
-    addCount({ type: "ADD_ITEM", payload: 1 });
-  };
-
-  console.log(count);
-
   return (
     <div className="bg-white pt-32">
-      <button onClick={addCountFunc}>Test</button>
       <main className="px-4 pt-6 sm:px-6 lg:px-8">
         {/* Image gallery */}
         <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
@@ -179,7 +167,7 @@ const ProductsDetail: NextPage = (
                               ? "cursor-pointer shadow-sm"
                               : "cursor-not-allowed text-gray-200"
                           } ${active ? "ring-2 ring-blue-500" : ""}
-                            group relative flex items-center justify-center rounded-md border bg-white bg-gray-50 py-3 px-4 text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6`
+                            group relative flex items-center justify-center rounded-md border  bg-white py-3 px-4 text-sm font-medium uppercase text-gray-900 hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6`
                         }
                       >
                         {({ active, checked }) => (

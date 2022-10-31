@@ -1,15 +1,14 @@
-enum Sizes {
-  "xxs",
-  "xs",
-  "sm",
-  "md",
-  "lg",
-  "xl",
-  "2xl",
-  "3xl",
-  "4xl",
-  "5xl",
-}
+type Sizes =
+  | "xxs"
+  | "xs"
+  | "sm"
+  | "md"
+  | "lg"
+  | "xl"
+  | "2xl"
+  | "3xl"
+  | "4xl"
+  | "5xl";
 
 interface Variants {
   id: Sizes;
@@ -17,20 +16,22 @@ interface Variants {
   size: Sizes;
 }
 
+interface Colors {
+  name: string;
+  code: string;
+}
+
 export interface ProductType {
   id: string;
+  key: string;
   title: string;
   description: string;
-  colors: {
-    name: string;
-    code: string;
-  }[];
+  colors: Colors[] | Colors;
   variants: Variants[];
-  defaultVariant: string;
   quantity: {
     size: Sizes;
     qty: number;
-  }[];
+  };
   images: {
     imageSrc: string;
     imageAlt: string;
