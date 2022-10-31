@@ -1,16 +1,14 @@
-import { cart } from "react";
+import { Dispatch } from "react";
 import { ProductType } from "./product-types";
 
 export interface cartContextType {
   items: ProductType[];
-  cart: cart<any>;
+  cart: Dispatch<any>;
 }
 
-enum ReducerActionType {
-  ADD_ITEM,
-}
+export type actionType = "ADD_ITEM" | "REMOVE_ITEM";
 
 export interface ReducerAction {
-  type: ReducerActionType;
+  type: actionType;
   payload?: any;
 }

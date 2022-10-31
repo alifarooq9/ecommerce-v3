@@ -87,9 +87,7 @@ const MiniCart: FC<miniCartProptypes> = ({ open, setOpen }) => {
                                       </p>
                                     </div>
                                     <div className="flex flex-1 items-end justify-between text-sm">
-                                      <p className="text-gray-500">
-                                        Qty {product.quantity}
-                                      </p>
+                                      <p className="text-gray-500">Qty 2</p>
 
                                       <div className="flex">
                                         <button

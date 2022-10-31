@@ -4,11 +4,13 @@ import {
   InferGetServerSidePropsType,
   NextPage,
 } from "next";
-import { useContext, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 import { RadioGroup } from "@headlessui/react";
 import products from "../../../public/dummyProducts.json";
 import Image from "next/image";
-import cartContext from "../../context/cartContext";
+import { useDispatch, useSelector } from "react-redux";
+import { Action, ItemState } from "../../redux/cartReducer";
+import { Dispatch } from "redux";
 
 const ProductsDetail: NextPage = (
   props: InferGetServerSidePropsType<GetServerSideProps>
@@ -16,10 +18,21 @@ const ProductsDetail: NextPage = (
   const product = products.find((p) => p.id === props.idParams);
 
   const [selectedColor, setSelectedColor] = useState(product?.colors[0]);
-  const [selectedSize, setSelectedSize] = useState(product?.variants[2]);
+  const [selectedSize, setSelectedSize] = useState(
+    product?.variants.find((p) => p.id === product.defaultVariant)
+  );
+
+  const count = useSelector<ItemState>((state) => state.id);
+  const addCount = useDispatch<Dispatch<Action>>();
+  const addCountFunc = () => {
+    addCount({ type: "ADD_ITEM", payload: 1 });
+  };
+
+  console.log(count);
 
   return (
     <div className="bg-white pt-32">
+      <button onClick={addCountFunc}>Test</button>
       <main className="px-4 pt-6 sm:px-6 lg:px-8">
         {/* Image gallery */}
         <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
@@ -107,14 +120,15 @@ const ProductsDetail: NextPage = (
                       <RadioGroup.Option
                         key={color.name}
                         value={color.name}
+                        style={{ backgroundColor: color.code }}
                         className={({ active, checked }) =>
-                          ` bg-[${color.code}]
+                          `
                             ${
                               active || checked
                                 ? "ring-2 ring-blue-500 ring-offset-2"
                                 : ""
                             }
-                            relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none`
+                            relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full  focus:outline-none`
                         }
                       >
                         <RadioGroup.Label as="span" className="sr-only">
@@ -215,7 +229,7 @@ const ProductsDetail: NextPage = (
 
               <button
                 type="submit"
-                className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-900 py-3 px-8 text-base font-medium text-white transition-colors duration-300 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-black py-3 px-8 text-base font-medium text-white transition-colors duration-300 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 Add to bag
               </button>
@@ -229,32 +243,34 @@ const ProductsDetail: NextPage = (
 
               <div className="space-y-6">
                 <p className="text-base text-gray-900">
-                  {product?.description}
+                  {product?.description?.main}
                 </p>
               </div>
             </div>
 
-            {/* <div className="mt-10">
+            <div className="mt-10">
               <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
 
               <div className="mt-4">
                 <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-                  {product?.highlights.map((highlight) => (
+                  {product?.description?.highlights.map((highlight) => (
                     <li key={highlight} className="text-gray-400">
                       <span className="text-gray-600">{highlight}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-            </div> */}
+            </div>
 
-            {/* <div className="mt-10">
+            <div className="mt-10">
               <h2 className="text-sm font-medium text-gray-900">Details</h2>
 
               <div className="mt-4 space-y-6">
-                <p className="text-sm text-gray-600">{product.details}</p>
+                <p className="text-sm text-gray-600">
+                  {product?.description?.details}
+                </p>
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </main>
