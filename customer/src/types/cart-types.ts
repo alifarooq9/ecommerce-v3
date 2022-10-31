@@ -1,9 +1,9 @@
-import { Dispatch } from "react";
+import { cart } from "react";
 import { ProductType } from "./product-types";
 
 export interface cartContextType {
   items: ProductType[];
-  dispatch: Dispatch<any>;
+  cart: cart<any>;
 }
 
 enum ReducerActionType {

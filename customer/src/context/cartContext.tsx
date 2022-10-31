@@ -4,7 +4,7 @@ import { ProductType } from "../types/product-types";
 
 const cartContext = createContext<cartContextType>({
   items: [],
-  dispatch: () => {
+  cart: () => {
     return;
   },
 });
@@ -16,11 +16,11 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     return state;
   };
 
-  const [state, dispatch] = useReducer(Reducer, initialState);
+  const [state, cart] = useReducer(Reducer, initialState);
 
   const context = {
     items: state,
-    dispatch,
+    cart,
   };
 
   return (
