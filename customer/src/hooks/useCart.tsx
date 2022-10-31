@@ -1,16 +1,18 @@
-import { useSelector, useDispatch } from "react-redux";
-import { decrement, increment } from "../redux/slices/cartSlice";
-import type { RootState } from "../redux/stores/cartStore";
+import { useCart, Item } from "react-use-cart";
+import { itemTypes } from "../types/cart-types";
 
 const UseCart = () => {
-  const count = useSelector((state: RootState) => state.counter.value);
-  const dispatch = useDispatch();
+  const { addItem, items, emptyCart } = useCart();
+  const productItems = items as itemTypes[];
 
-  const incrementFnc = () => {
-    dispatch(increment());
+  const handleAddItem = (product: itemTypes) => {
+    addItem({
+      ...product,
+      id: product.id + product.size,
+    } as itemTypes);
   };
 
-  return { incrementFnc, count };
+  return { handleAddItem, productItems, emptyCart };
 };
 
 export default UseCart;

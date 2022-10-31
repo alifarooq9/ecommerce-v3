@@ -4,10 +4,12 @@ import {
   InferGetServerSidePropsType,
   NextPage,
 } from "next";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { RadioGroup } from "@headlessui/react";
 import products from "../../../public/dummyProducts.json";
 import Image from "next/image";
+import { Color, Description, Sizes, Variants } from "../../types/cart-types";
+import UseCart from "../../hooks/useCart";
 
 const ProductsDetail: NextPage = (
   props: InferGetServerSidePropsType<GetServerSideProps>
@@ -18,9 +20,29 @@ const ProductsDetail: NextPage = (
   const [selectedSize, setSelectedSize] = useState(
     product?.variants.find((p) => p.id === product.defaultVariant)
   );
+  console.log(selectedColor);
+
+  const { productItems, handleAddItem, emptyCart } = UseCart();
+  const additems = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleAddItem({
+      id: (product?.id + selectedSize!.id + selectedColor?.code) as string,
+      color: selectedColor as Color,
+      description: product?.description as Description,
+      images: product?.images as any,
+      key: product?.id as string,
+      price: product?.variants.find((p) => p.id === selectedSize?.id)
+        ?.price as number,
+      quantity: 1,
+      size: selectedSize?.id as Sizes,
+      title: product?.title as string,
+      variants: product?.variants as Variants[],
+    });
+  };
 
   return (
     <div className="bg-white pt-32">
+      <button onClick={() => emptyCart()}>Test</button>
       <main className="px-4 pt-6 sm:px-6 lg:px-8">
         {/* Image gallery */}
         <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
@@ -89,7 +111,7 @@ const ProductsDetail: NextPage = (
 
             {/* Reviews */}
 
-            <form className="mt-10">
+            <form className="mt-10" onSubmit={additems}>
               {/* Colors */}
               <div>
                 <h3 className="text-sm font-medium text-gray-900">Color</h3>
@@ -107,7 +129,7 @@ const ProductsDetail: NextPage = (
                     {product?.colors.map((color) => (
                       <RadioGroup.Option
                         key={color.name}
-                        value={color.name}
+                        value={color}
                         style={{ backgroundColor: color.code }}
                         className={({ active, checked }) =>
                           `
