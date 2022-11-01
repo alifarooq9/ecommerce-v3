@@ -1,11 +1,10 @@
 import { Dispatch, FC, Fragment, SetStateAction } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { TrashIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
-import products from "../../../../public/dummyProducts.json";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import UseCart from "../../../hooks/useCart";
 import CartItem from "./cartItem";
-import { itemTypes } from "../../../types/cart-types";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 interface miniCartProptypes {
   open: boolean;
@@ -13,6 +12,9 @@ interface miniCartProptypes {
 }
 
 const MiniCart: FC<miniCartProptypes> = ({ open, setOpen }) => {
+  //current session
+  const { data: session, status } = useSession();
+
   //cart
   const { productItems, totalPrice } = UseCart();
 
@@ -94,9 +96,11 @@ const MiniCart: FC<miniCartProptypes> = ({ open, setOpen }) => {
                         Shipping and taxes calculated at checkout.
                       </p>
                       <div className="mt-6">
-                        <a className="flex cursor-pointer items-center justify-center rounded-md border border-transparent bg-black px-6 py-3 text-base font-medium text-white shadow-sm transition-colors duration-300 hover:bg-gray-700">
-                          Checkout
-                        </a>
+                        <Link href={"/checkout/review"}>
+                          <a className="flex cursor-pointer items-center justify-center rounded-md border border-transparent bg-black px-6 py-3 text-base font-medium text-white shadow-sm transition-colors duration-300 hover:bg-gray-700">
+                            Checkout
+                          </a>
+                        </Link>
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>
