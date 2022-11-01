@@ -20,7 +20,6 @@ const ProductsDetail: NextPage = (
   const [selectedSize, setSelectedSize] = useState(
     product?.variants.find((p) => p.id === product.defaultVariant)
   );
-  console.log(selectedColor);
 
   const { productItems, handleAddItem, emptyCart } = UseCart();
   const additems = (e: FormEvent<HTMLFormElement>) => {

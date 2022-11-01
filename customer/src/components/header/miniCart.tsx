@@ -3,6 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import products from "../../../public/dummyProducts.json";
+import UseCart from "../../hooks/useCart";
 
 interface miniCartProptypes {
   open: boolean;
@@ -10,6 +11,9 @@ interface miniCartProptypes {
 }
 
 const MiniCart: FC<miniCartProptypes> = ({ open, setOpen }) => {
+  //cart
+  const { productItems } = UseCart();
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-40" onClose={() => setOpen(false)}>
@@ -63,7 +67,7 @@ const MiniCart: FC<miniCartProptypes> = ({ open, setOpen }) => {
                               role="list"
                               className="-my-6 divide-y divide-gray-200"
                             >
-                              {products.map((product) => (
+                              {productItems.map((product) => (
                                 <li key={product.id} className="flex py-6">
                                   <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                     <Image
@@ -80,14 +84,21 @@ const MiniCart: FC<miniCartProptypes> = ({ open, setOpen }) => {
                                     <div>
                                       <div className="flex justify-between text-base font-medium text-gray-900">
                                         <h3>{product.title}</h3>
-                                        <p className="ml-4">$44.99</p>
+                                        <p className="ml-4">${product.price}</p>
                                       </div>
-                                      <p className="mt-1 text-sm text-gray-500">
-                                        md
-                                      </p>
+                                      <div className="flex items-center space-x-2 divide-x py-0.5">
+                                        <p className="mt-1 text-sm text-gray-500">
+                                          {product.size}
+                                        </p>
+                                        <p className="mt-1 pl-2 text-sm text-gray-500">
+                                          {product.color.name}
+                                        </p>
+                                      </div>
                                     </div>
                                     <div className="flex flex-1 items-end justify-between text-sm">
-                                      <p className="text-gray-500">Qty 2</p>
+                                      <p className="text-gray-500">
+                                        Qty {product.quantity}
+                                      </p>
 
                                       <div className="flex">
                                         <button

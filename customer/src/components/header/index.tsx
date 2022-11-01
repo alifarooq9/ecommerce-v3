@@ -8,6 +8,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import NavLinks from "./navLinks";
 import AuthState from "./authState";
+import UseCart from "../../hooks/useCart";
 const MiniCart = dynamic(() => import("./miniCart"));
 const MobileNav = dynamic(() => import("./mobileNav"));
 
@@ -15,6 +16,9 @@ const Header: FC = () => {
   //menu states
   const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false);
   const [openMiniCart, setOpenMiniCart] = useState<boolean>(false);
+
+  // use cart
+  const { totalItems } = UseCart();
 
   return (
     <div className="fixed top-0 left-0 z-30 w-screen bg-white">
@@ -85,7 +89,7 @@ const Header: FC = () => {
                       aria-hidden="true"
                     />
                     <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                      0
+                      {totalItems}
                     </span>
                     <span className="sr-only">items in cart, view bag</span>
                   </button>
