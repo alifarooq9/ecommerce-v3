@@ -1,9 +1,11 @@
 import { Dispatch, FC, Fragment, SetStateAction } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { TrashIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import products from "../../../public/dummyProducts.json";
-import UseCart from "../../hooks/useCart";
+import products from "../../../../public/dummyProducts.json";
+import UseCart from "../../../hooks/useCart";
+import CartItem from "./cartItem";
+import { itemTypes } from "../../../types/cart-types";
 
 interface miniCartProptypes {
   open: boolean;
@@ -12,7 +14,7 @@ interface miniCartProptypes {
 
 const MiniCart: FC<miniCartProptypes> = ({ open, setOpen }) => {
   //cart
-  const { productItems } = UseCart();
+  const { productItems, totalPrice } = UseCart();
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -68,49 +70,7 @@ const MiniCart: FC<miniCartProptypes> = ({ open, setOpen }) => {
                               className="-my-6 divide-y divide-gray-200"
                             >
                               {productItems.map((product) => (
-                                <li key={product.id} className="flex py-6">
-                                  <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                    <Image
-                                      src={
-                                        product.images[0]?.imageSrc as string
-                                      }
-                                      alt={product.images[0]?.imageAlt}
-                                      className="h-full w-full object-cover object-center"
-                                      layout="fill"
-                                    />
-                                  </div>
-
-                                  <div className="ml-4 flex flex-1 flex-col">
-                                    <div>
-                                      <div className="flex justify-between text-base font-medium text-gray-900">
-                                        <h3>{product.title}</h3>
-                                        <p className="ml-4">${product.price}</p>
-                                      </div>
-                                      <div className="flex items-center space-x-2 divide-x py-0.5">
-                                        <p className="mt-1 text-sm text-gray-500">
-                                          {product.size}
-                                        </p>
-                                        <p className="mt-1 pl-2 text-sm text-gray-500">
-                                          {product.color.name}
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <div className="flex flex-1 items-end justify-between text-sm">
-                                      <p className="text-gray-500">
-                                        Qty {product.quantity}
-                                      </p>
-
-                                      <div className="flex">
-                                        <button
-                                          type="button"
-                                          className="font-medium text-red-500 hover:text-red-700"
-                                        >
-                                          Remove
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </li>
+                                <CartItem key={product.id} product={product} />
                               ))}
                             </ul>
                           </div>
@@ -128,7 +88,7 @@ const MiniCart: FC<miniCartProptypes> = ({ open, setOpen }) => {
                     <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
-                        <p>$262.00</p>
+                        <p>${totalPrice}</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">
                         Shipping and taxes calculated at checkout.

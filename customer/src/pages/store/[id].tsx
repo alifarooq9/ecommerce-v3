@@ -21,7 +21,7 @@ const ProductsDetail: NextPage = (
     product?.variants.find((p) => p.id === product.defaultVariant)
   );
 
-  const { productItems, handleAddItem, emptyCart } = UseCart();
+  const { handleAddItem } = UseCart();
   const additems = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     handleAddItem({
@@ -41,7 +41,6 @@ const ProductsDetail: NextPage = (
 
   return (
     <div className="bg-white pt-32">
-      <button onClick={() => emptyCart()}>Test</button>
       <main className="px-4 pt-6 sm:px-6 lg:px-8">
         {/* Image gallery */}
         <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
