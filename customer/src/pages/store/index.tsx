@@ -126,10 +126,11 @@ const Store: NextPage = (
                 onSubmit={(e) => handleApplyFilters(e)}
                 className="hidden lg:block"
               >
-                {filters.map((section) => (
+                {filters.map((section, sectionIndex) => (
                   <Disclosure
                     as="div"
                     key={section.id}
+                    defaultOpen={sectionIndex === 0}
                     className="border-b border-gray-200 py-6"
                   >
                     {({ open }) => (

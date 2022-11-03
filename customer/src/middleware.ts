@@ -1,8 +1,10 @@
+import { getServerAuthSession } from "./server/common/get-server-auth-session";
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(req: NextRequest) {
   const session = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+  // const session = await getServerAuthSession({req: req, res});
   const pathname = req.nextUrl.pathname;
   const url = req.nextUrl.origin;
 

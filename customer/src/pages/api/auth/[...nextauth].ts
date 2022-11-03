@@ -19,7 +19,7 @@ export const authOptions: NextAuthOptions = {
 
   pages: {
     signIn: "/auth/signin",
-    // error: "/auth/signin",
+    error: "/auth/signin",
   },
   debug: true,
   callbacks: {
@@ -62,6 +62,7 @@ export const authOptions: NextAuthOptions = {
                 id: user.id,
                 name: user.name,
                 email: user.email,
+                isHavePassword: user.password ? true : false,
                 createdAt: user.createdAt,
                 updatedAt: user.updatedAt,
               };

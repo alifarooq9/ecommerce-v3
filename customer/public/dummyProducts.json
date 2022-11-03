@@ -63,7 +63,7 @@
         "qty": 2
       }
     ],
-    "defaultVariant": "sm",
+    "defaultVariant": "md",
     "images": [
       {
         "imageSrc": "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg",

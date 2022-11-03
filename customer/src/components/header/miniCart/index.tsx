@@ -4,7 +4,6 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import UseCart from "../../../hooks/useCart";
 import CartItem from "./cartItem";
 import { useSession } from "next-auth/react";
-import Link from "next/link";
 
 interface miniCartProptypes {
   open: boolean;
@@ -13,7 +12,7 @@ interface miniCartProptypes {
 
 const MiniCart: FC<miniCartProptypes> = ({ open, setOpen }) => {
   //current session
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   //cart
   const { productItems, totalPrice } = UseCart();
@@ -47,8 +46,8 @@ const MiniCart: FC<miniCartProptypes> = ({ open, setOpen }) => {
               >
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-xl">
                   <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
-                    <div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
-                      <div className="flex items-start justify-between">
+                    <div className="flex-1 overflow-y-auto px-4 sm:px-6">
+                      <div className="sticky top-0 z-10 flex items-start justify-between bg-white py-5">
                         <Dialog.Title className="text-lg font-medium text-gray-900">
                           Shopping cart
                         </Dialog.Title>
@@ -64,7 +63,7 @@ const MiniCart: FC<miniCartProptypes> = ({ open, setOpen }) => {
                         </div>
                       </div>
 
-                      {true ? (
+                      {productItems.length !== 0 ? (
                         <div className="mt-8">
                           <div className="flow-root">
                             <ul
@@ -96,11 +95,12 @@ const MiniCart: FC<miniCartProptypes> = ({ open, setOpen }) => {
                         Shipping and taxes calculated at checkout.
                       </p>
                       <div className="mt-6">
-                        <Link href={"/checkout/review"}>
-                          <a className="flex cursor-pointer items-center justify-center rounded-md border border-transparent bg-black px-6 py-3 text-base font-medium text-white shadow-sm transition-colors duration-300 hover:bg-gray-700">
-                            Checkout
-                          </a>
-                        </Link>
+                        <button
+                          onClick={() => setOpen(false)}
+                          className="flex w-full cursor-pointer items-center justify-center rounded-md border border-transparent bg-black px-6 py-3 text-base font-medium text-white shadow-sm transition-colors duration-300 hover:bg-gray-700"
+                        >
+                          {session ? "Checkout" : "Signin to Checkout"}
+                        </button>
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>
