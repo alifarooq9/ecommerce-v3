@@ -57,6 +57,7 @@ export const authRouter = router({
               name: input.name,
               email: input.email,
               password: await bcrypt.hash(input.password, 8),
+              emailVerified: null,
             },
           });
         } catch (e: any) {

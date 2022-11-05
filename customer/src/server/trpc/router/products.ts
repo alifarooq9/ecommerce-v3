@@ -6,9 +6,9 @@ export const productsRouter = router({
     .input(
       z.object({
         query: z.object({
-          color: z.string().array().or(z.string()),
-          category: z.string().array().or(z.string()),
-          size: z.string().array().or(z.string()),
+          color: z.string().array().or(z.string()).nullish(),
+          category: z.string().array().or(z.string()).nullish(),
+          size: z.string().array().or(z.string()).nullish(),
         }),
         sort: z.enum([
           "MOSTPOPULAR",
@@ -19,11 +19,9 @@ export const productsRouter = router({
         ]),
       })
     )
-    .query(({ input }) => {
-      console.log(input.query);
+    .query(async ({ input, ctx }) => {
+      console.log(input.query.color ? input.query.color : null);
 
-      return {
-        greeting: `Hello ${input ?? "world"}`,
-      };
+      return {};
     }),
 });

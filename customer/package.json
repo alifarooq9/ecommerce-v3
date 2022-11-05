@@ -28,6 +28,7 @@
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.0",
     "react-use-cart": "^1.13.0",
+    "recoil": "^0.7.6",
     "superjson": "1.9.1",
     "zod": "^3.18.0"
   },

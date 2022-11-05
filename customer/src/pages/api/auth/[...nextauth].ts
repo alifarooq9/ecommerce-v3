@@ -65,6 +65,10 @@ export const authOptions: NextAuthOptions = {
                 isHavePassword: user.password ? true : false,
                 createdAt: user.createdAt,
                 updatedAt: user.updatedAt,
+                emailVerified: user.emailVerified,
+                role: user.role,
+                phoneNumber: user.phoneNumber,
+                image: user.image,
               };
               return userAccount;
             } else {

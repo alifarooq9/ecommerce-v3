@@ -1,8 +1,8 @@
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import { getServerAuthSession } from "../../server/common/get-server-auth-session";
 
-const Orders: NextPage = () => {
-  return <div>Orders</div>;
+const VerifyEmail: NextPage = () => {
+  return <div className="pt-32">Verify</div>;
 };
 
 export const getServerSideProps: GetServerSideProps = async (
@@ -15,4 +15,4 @@ export const getServerSideProps: GetServerSideProps = async (
   };
 };
 
-export default Orders;
+export default VerifyEmail;

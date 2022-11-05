@@ -1,7 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import { format } from "date-fns";
 
-import { PaperClipIcon } from "@heroicons/react/20/solid";
 import { useSession } from "next-auth/react";
 import { getServerAuthSession } from "../../server/common/get-server-auth-session";
 import Link from "next/link";
