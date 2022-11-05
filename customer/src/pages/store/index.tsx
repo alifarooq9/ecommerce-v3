@@ -35,8 +35,10 @@ const Store: NextPage = (
 
   //fetch products
   const data = trpc.products.getAll.useQuery({
-    query: props.query,
-    sort: props.query.sort ? props.query.sort : "NEWEST",
+    query: {
+      ...props.query,
+      sort: props.query.sort ? props.query.sort : "NEWEST",
+    },
   });
 
   return (

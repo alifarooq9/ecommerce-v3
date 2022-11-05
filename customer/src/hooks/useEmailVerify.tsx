@@ -1,6 +1,7 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { trpc } from "../utils/trpc";
 
 const UseEmailVerify = () => {
   //current session
@@ -28,6 +29,12 @@ const UseEmailVerify = () => {
     }
   };
 
+  //send mail
+  const emailRoute = trpc.email.send.useMutation();
+  const handleSendMail = async () => {
+    emailRoute.mutate({});
+  };
+
   return {
     isEmailVerified:
       session &&
@@ -37,6 +44,7 @@ const UseEmailVerify = () => {
         ? true
         : false,
     handleCloseEmailVerifyBanner,
+    handleSendMail,
   };
 };
 

@@ -1,7 +1,7 @@
 import { FC, ReactNode } from "react";
 import { Toaster } from "react-hot-toast";
 import { CartProvider } from "react-use-cart";
-import VerifyEmailBanner from "../components/account/verifyEmailBanner";
+import VerifyEmailBanner from "../components/account/verifyEmail/verifyEmailBanner";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import UseEmailVerify from "../hooks/useEmailVerify";

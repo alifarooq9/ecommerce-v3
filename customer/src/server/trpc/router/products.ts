@@ -9,14 +9,14 @@ export const productsRouter = router({
           color: z.string().array().or(z.string()).nullish(),
           category: z.string().array().or(z.string()).nullish(),
           size: z.string().array().or(z.string()).nullish(),
+          sort: z.enum([
+            "MOSTPOPULAR",
+            "BESTRATING",
+            "NEWEST",
+            "LOWTOHIGH",
+            "HIGHTOLOW",
+          ]),
         }),
-        sort: z.enum([
-          "MOSTPOPULAR",
-          "BESTRATING",
-          "NEWEST",
-          "LOWTOHIGH",
-          "HIGHTOLOW",
-        ]),
       })
     )
     .query(async ({ input, ctx }) => {
