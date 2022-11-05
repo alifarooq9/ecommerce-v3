@@ -19,6 +19,7 @@ import Link from "next/link";
 import Router from "next/router";
 import useFilter from "../../hooks/usefilter";
 import Products from "../../components/store/products";
+import { trpc } from "../../utils/trpc";
 const MobileFilter = dynamic(
   () => import("../../components/store/mobileFilter")
 );
@@ -32,11 +33,18 @@ const Store: NextPage = (
   //mobile filter state
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState<boolean>(false);
 
+  //fetch products
+  const data = trpc.products.getAll.useQuery({
+    query: props.query,
+    sort: props.query.sort ? props.query.sort : "NEWEST",
+  });
+
   return (
     <div className="min-h-screen bg-white pt-14">
       <MobileFilter
         mobileFiltersOpen={mobileFiltersOpen}
         setMobileFiltersOpen={setMobileFiltersOpen}
+        refetch={data.refetch}
       />
 
       <div>

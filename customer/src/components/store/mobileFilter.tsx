@@ -6,11 +6,13 @@ import useFilter from "../../hooks/usefilter";
 interface mobileFilterTypes {
   mobileFiltersOpen: boolean;
   setMobileFiltersOpen: Dispatch<SetStateAction<boolean>>;
+  refetch: () => void;
 }
 
 const MobileFilter: FC<mobileFilterTypes> = ({
   mobileFiltersOpen,
   setMobileFiltersOpen,
+  refetch,
 }) => {
   //use filters
   const { filters, onChangeFilter, handleApplyFilters } = useFilter();
@@ -62,7 +64,7 @@ const MobileFilter: FC<mobileFilterTypes> = ({
                 {/* Filters */}
                 <form
                   className="mt-4 border-t border-gray-200"
-                  onSubmit={handleApplyFilters}
+                  onSubmit={(e) => handleApplyFilters(e)}
                 >
                   {filters.map((section) => (
                     <Disclosure
